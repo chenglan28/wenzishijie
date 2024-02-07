@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>文字世界</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                color: white;
+            }
+            html,body {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                background: black;
+                overflow: hidden;
+            }
+            #startUI {
+                width: 100%;
+                height: 100%;
+            }
+            #title {
+                position: absolute;
+                width: 100%;
+                padding: 10% 10%;
+            }
+            #select {
+                text-align: center;
+                position: absolute;
+                width: 100%;
+                white-space: nowrap;
+                right: 10%;
+                bottom: 10%;
+                width: 40%;
+                height: 50%;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+            #select button,#select input {
+                width: 100%;
+                color: black;
+                min-height: 10%;
+            }
+            #StartingTransition {
+                background: red;
+                width: 100%;
+                height: 100%;
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            #demo {
+                width: 100%;
+                height: 100%;
+                display: none;
+            }
+            #map {
+                color: white;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            #info {
+                border: 5px solid gray;
+                position: absolute;
+                bottom: -5px;
+                right: -10px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 5px;
+                color: white;
+            }
+            #info button,#info input {
+                color: white;
+                padding: 1px;
+                background: none;
+                border: 1px solid white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo">
+            <canvas id="map">
+            </canvas>
+            <div id="info">
+                坐标:<span id="xyz"></span><br/>
+                当前选中:<span id="focus"></span>
+                [<span id="digProcess"></span>]<br/>
+                左手:<span id="leftHand">空</span>
+                <button onclick="throwLeftItem()" id="throwLeftItem">抛弃(O键)</button>
+                <button onclick="putLeftItem()" id="putLeftItem">放置(Q键)</button>
+                <br/>
+                右手:<span id="rightHand">空</span>
+                <button onclick="throwRightItem()" id="throwRightItem">抛弃(P键)</button>
+                <button onclick="putRightItem()" id="putRightItem">放置(E键)</button>
+                <br/><br/><hr/><br/>
+                <button title="将所选方块挖下并放入背包" id="dig">挖掘(鼠标左键)</button>
+                <button title="将所选方块拆分成别的块" id="decompose">分解(鼠标左键+Shift)</button>
+                <button title="将所选方块及周围8个方块合成别的东西" id="craft">合成(R键)</button>
+                <br/><br/><hr/><br/>
+                <input type="text" value="New World" placeholder="世界名" id="worldName" />
+                <button onclick="save();">保存</button>
+                <span id="save"></span>
+            </div>
+        </div>
+        <div id="startUI">
+            <div id="title">
+                文字世界
+            </div>
+            <div id="select">
+                <input type="number" id="mapSize" placeholder="地图大小（默认为128）" style="width: 74%;" />
+                <button onclick="start()" id="start" style="width: 25%;">开始新的游戏</button><br/><br/>
+            </div>
+        </div>
+        <div id="StartingTransition"></div>
+        <script src="./js/data.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>
